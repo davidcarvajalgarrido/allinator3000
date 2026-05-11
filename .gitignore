@@ -39,3 +39,9 @@ coverage/
 # VSCode settings
 .vscode/
 node_modules/
+
+# Python virtual environment
+.venv/
+__pycache__/
+*.pyc
+*.pyo
