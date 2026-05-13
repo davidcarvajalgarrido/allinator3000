@@ -430,20 +430,20 @@ Cuando entras en POO, la pregunta deja de ser solo "qué hace esta función" y p
 Una clase define una plantilla. Un objeto es una instancia concreta de esa plantilla.
 
 ```python
-class Caballo:
-    def __init__(self, nombre, energia):
-        self.nombre = nombre
-        self.energia = energia
+class Horse:
+    def __init__(self, name, energy):
+        self.name = name
+        self.energy = energy
 
-    def relinchar(self):
-        return f"{self.nombre} dice: hiiiii"
+    def neigh(self):
+        return f"{self.name} dice: hiiiii"
 ```
 
 Uso:
 
 ```python
-caballo = Caballo("Babieca", 80)
-print(caballo.relinchar())
+horse = Horse("Babieca", 80)
+print(horse.neigh())
 ```
 
 Idea mental:
@@ -461,10 +461,10 @@ El método `__init__` se ejecuta al crear un objeto.
 Sirve para inicializar sus atributos:
 
 ```python
-class Caballo:
-    def __init__(self, nombre, edad):
-        self.nombre = nombre
-        self.edad = edad
+class Horse:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
 ```
 
 `self` no es una palabra reservada, pero en Python se usa siempre por convención.
@@ -472,33 +472,33 @@ class Caballo:
 Cuando escribes:
 
 ```python
-caballo = Caballo("Babieca", 6)
+horse = Horse("Babieca", 6)
 ```
 
 Python crea el objeto y se lo pasa como primer argumento al método.
 
-Por eso dentro de la clase escribimos `self.nombre`, `self.edad`, etc.
+Por eso dentro de la clase escribimos `self.name`, `self.age`, etc.
 
 ## 16. Herencia: reutilizar una clase base
 
 La herencia permite crear una clase nueva a partir de otra.
 
-En nuestro ejemplo, `Pegaso` y `Unicornio` heredan de `Caballo`.
+En nuestro ejemplo, `Pegasus` y `Unicorn` heredan de `Horse`.
 
 ```python
-class Pegaso(Caballo):
-    def __init__(self, nombre, edad, color, velocidad_maxima, energia, altura_de_vuelo):
-        super().__init__(nombre, edad, color, velocidad_maxima, energia)
-        self.altura_de_vuelo = altura_de_vuelo
+class Pegasus(Horse):
+    def __init__(self, name, age, color, max_speed, energy, flight_height):
+        super().__init__(name, age, color, max_speed, energy)
+        self.flight_height = flight_height
 ```
 
 `super()` sirve para reutilizar la lógica de la clase padre sin tener que copiarla.
 
 La idea práctica es simple:
 
-- `Caballo` define lo común
-- `Pegaso` añade lo que solo tiene un pegaso
-- `Unicornio` añade lo que solo tiene un unicornio
+- `Horse` define lo común
+- `Pegasus` añade lo que solo tiene un pegaso
+- `Unicorn` añade lo que solo tiene un unicornio
 
 ## 17. Polimorfismo por inclusión
 
@@ -506,12 +506,12 @@ Este es el polimorfismo clásico de herencia.
 
 Distintas clases comparten una interfaz común porque vienen de la misma base o porque redefinen el mismo método.
 
-Con nuestro ejemplo, `Caballo`, `Pegaso` y `Unicornio` pueden responder a `relinchar()`:
+Con nuestro ejemplo, `Horse`, `Pegasus` y `Unicorn` pueden responder a `neigh()`:
 
 ```python
-print(caballo.relinchar())
-print(pegaso.relinchar())
-print(unicornio.relinchar())
+print(horse.neigh())
+print(pegasus.neigh())
+print(unicorn.neigh())
 ```
 
 La gracia no es que hagan algo muy distinto, sino que desde fuera los tratas de forma uniforme.
@@ -522,31 +522,31 @@ Eso es exactamente la idea de polimorfismo por inclusión: varios objetos pueden
 
 En el código que hemos montado hoy aparecen esas dos ideas de forma bastante limpia:
 
-- `Pegaso` y `Unicornio` heredan de `Caballo`: eso es herencia.
-- Los tres pueden usar `relinchar()`: eso es polimorfismo por inclusión.
+- `Pegasus` y `Unicorn` heredan de `Horse`: eso es herencia.
+- Los tres pueden usar `neigh()`: eso es polimorfismo por inclusión.
 
 Visto desde fuera:
 
 ```python
-caballo = Caballo("Babieca", 6, "marron", 55, 80)
-pegaso = Pegaso("Nube", 4, "blanco", 70, 90, 1200)
-unicornio = Unicornio("Destello", 5, "plateado", 60, 85, "dorado")
+horse = Horse("Babieca", 6, "marrón", 55, 80)
+pegasus = Pegasus("Nube", 4, "blanco", 70, 90, 1200)
+unicorn = Unicorn("Destello", 5, "plateado", 60, 85, "dorado")
 
-print(caballo.relinchar())
-print(pegaso.relinchar())
-print(unicornio.relinchar())
+print(horse.neigh())
+print(pegasus.neigh())
+print(unicorn.neigh())
 
-print(caballo.comer(15))
+print(horse.eat(15))
 
-print(pegaso.volar(300))
-print(unicornio.lanzar_magia())
+print(pegasus.fly(300))
+print(unicorn.cast_magic())
 ```
 
 Fíjate en la diferencia:
 
-- `relinchar()` es común a las tres clases porque `Pegaso` y `Unicornio` lo heredan.
-- `volar()` solo tiene sentido en `Pegaso`.
-- `lanzar_magia()` solo tiene sentido en `Unicornio`.
+- `neigh()` es común a las tres clases porque `Pegasus` y `Unicorn` lo heredan.
+- `fly()` solo tiene sentido en `Pegasus`.
+- `cast_magic()` solo tiene sentido en `Unicorn`.
 
 Eso deja bastante clara la separación entre lo común y lo específico.
 
@@ -569,4 +569,4 @@ Eso deja bastante clara la separación entre lo común y lo específico.
 - La herencia evita duplicar lo común.
 - El polimorfismo por inclusión te deja tratar varios objetos de forma uniforme.
 
-Si entiendes estas ideas y las relacionas con el ejemplo de `Caballo`, `Pegaso` y `Unicornio`, ya tienes una base muy útil para empezar a leer y escribir POO en Python con criterio.
+Si entiendes estas ideas y las relacionas con el ejemplo de `Horse`, `Pegasus` y `Unicorn`, ya tienes una base muy útil para empezar a leer y escribir POO en Python con criterio.
